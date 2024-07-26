@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Calculator</title>
+    <style>
+      .caldes {
+        padding: 20px;
+        border-radius: 1.5em;
+        height: 380px;
+        width: 400px;
+        background-color: #9a5dac;
+      }
+      .display-box {
+        background-color: #dcdbe1;
+        border: solid black 0.5px;
+        color: black;
+        border-radius: 5px;
+        width: 100%;
+        height: 65%;
+      }
+      input[type="button"] {
+        background-color: #430240;
+        color: white;
+        border: solid black 0.5px;
+        border-radius: 5px;
+        width: 100%;
+        height: 70%;
+      }
+      input:active[type="button"] {
+        background: #e5e5e5;
+      }
+      #btn {
+        background-color: #fb0066;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Calculator</h1>
+    <table class="caldes">
+      <tr>
+        <td colspan="3">
+          <input class="display-box" type="text" id="result" disabled />
+        </td>
+        <td>
+          <input type="button" value="Clear" onclick="clearScreen()" id="btn" />
+        </td>
+      </tr>
+      <tr>
+        <td><input type="button" value="1" onclick="display('1')" /></td>
+        <td><input type="button" value="2" onclick="display('2')" /></td>
+        <td><input type="button" value="3" onclick="display('3')" /></td>
+        <td><input type="button" value="+" onclick="display('+')" /></td>
+      </tr>
+      <tr>
+        <td><input type="button" value="4" onclick="display('4')" /></td>
+        <td><input type="button" value="5" onclick="display('5')" /></td>
+        <td><input type="button" value="6" onclick="display('6')" /></td>
+        <td><input type="button" value="-" onclick="display('-')" /></td>
+      </tr>
+      <tr>
+        <td><input type="button" value="7" onclick="display('7')" /></td>
+        <td><input type="button" value="8" onclick="display('8')" /></td>
+        <td><input type="button" value="9" onclick="display('9')" /></td>
+        <td><input type="button" value="*" onclick="display('*')" /></td>
+      </tr>
+      <tr>
+        <td><input type="button" value="." onclick="display('.')" /></td>
+        <td><input type="button" value="0" onclick="display('0')" /></td>
+        <td><input type="button" value="/" onclick="display('/')" /></td>
+        <td>
+          <input type="button" value="=" onclick="calculate()" id="btn" />
+        </td>
+      </tr>
+    </table>
+    <script>
+      function clearScreen() {
+        document.getElementById("result").value = "";
+      }
+      function display(value) {
+        document.getElementById("result").value += value;
+      }
+      function calculate() {
+        var p = document.getElementById("result").value;
+        var q = eval(p);
+        document.getElementById("result").value = q;
+      }
+    </script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Form Validation</title>
+<style>
+    input[type="text"], select {
+        margin-bottom: 10px;
+    }
+</style>
+</head>
+<body>
+
+<form id="myForm">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name"><br>
+    <label for="email">Email:</label><br>
+    <input type="text" id="email" name="email"><br>
+    <label for="mobile">Mobile No:</label><br>
+    <input type="text" id="mobile" name="mobile"><br>
+    <label for="gender">Gender:</label><br>
+    <select id="gender" name="gender">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+    </select><br>
+    <label for="color">Favorite Color:</label><br>
+    <input type="color" id="color" name="color"><br>
+    <button type="button" onclick="validateForm()">Submit</button>
+</form>
+
+<div id="result"></div>
+
+<script>
+function validateForm() {
+    var name = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+    var mobile = document.getElementById('mobile').value;
+    var gender = document.getElementById('gender').value;
+    var color = document.getElementById('color').value;
+    
+    if (name === '' || email === '' || mobile === '' || gender === '') {
+        alert('Please fill in all fields.');
+        return false;
+    }
+
+    
+    var emailRegex = /^\S+@\S+\.\S+$/;
+    if (!emailRegex.test(email)) {
+        alert('Please enter a valid email address.');
+        return false;
+    }
+
+ 
+    var mobileRegex = /^\d{10}$/;
+    if (!mobileRegex.test(mobile)) {
+        alert('Please enter a valid 10-digit mobile number.');
+        return false;
+    }
+
+    var result = "Name: " + name + "<br>";
+    result += "Email: " + email + "<br>";
+    result += "Mobile No: " + mobile + "<br>";
+    result += "Gender: " + gender + "<br>";
+    result += "Favorite Color: <span style='color:" + color + ";'>" + color + "</span><br>";
+    
+    document.getElementById('result').innerHTML = result;
+}
+</script>
+
+</body>
+</html>
